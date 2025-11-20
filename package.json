@@ -35,9 +35,7 @@
     "react-select": "^5.10.1",
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
-    "reacticons": "^0.0.1",
     "slick-carousel": "^1.8.1",
-    "xlsx": "^0.18.5",
     "yup": "^1.6.1"
   },
   "devDependencies": {
