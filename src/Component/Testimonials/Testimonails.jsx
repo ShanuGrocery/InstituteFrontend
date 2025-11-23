@@ -9,7 +9,7 @@ const testimonials = [
     rating: 4.5,
     review:
       "The Safety Officer training course was incredibly practical. Real-life scenarios, case studies, and expert guidance helped me land my first job within weeks of completion.",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    // image: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     name: "Sahbaj Khan",
@@ -17,7 +17,7 @@ const testimonials = [
     rating: 4,
     review:
       "CIHS provided me with strong fundamentals in industrial safety. Their personalized mentoring and practical drills made all the difference in my learning journey.",
-    image: "https://randomuser.me/api/portraits/men/45.jpg",
+    // image: "https://randomuser.me/api/portraits/men/45.jpg",
   },
   {
     name: "Amit Kumar",
@@ -25,7 +25,7 @@ const testimonials = [
     rating: 4,
     review:
       "The course on safety risk management was very informative. I especially appreciated the hands-on training and live fire drills which built my confidence.",
-    image: "https://randomuser.me/api/portraits/men/52.jpg",
+    // image: "https://randomuser.me/api/portraits/men/52.jpg",
   },
 ];
 

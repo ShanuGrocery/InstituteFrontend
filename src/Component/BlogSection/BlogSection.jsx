@@ -1,6 +1,5 @@
 import React from "react";
 import { blogData } from "../../Mockdata/blogData";
-import { motion } from "framer-motion";
 
 // Shadow colors for both base and hover
 const hoverShadowColors = [
@@ -25,6 +24,7 @@ const BlogSection = () => {
   return (
     <section className="bg-gradient-to-br from-purple-50 via-white to-green-50 py-16 px-4 md:px-16">
       <div className="max-w-7xl mx-auto">
+
         {/* Heading */}
         <div className="text-center mb-14">
           <h2 className="text-4xl font-extrabold text-gray-700 relative inline-block">
@@ -43,19 +43,15 @@ const BlogSection = () => {
             const baseColor = baseShadowColors[index % baseShadowColors.length];
 
             return (
-              <motion.div
+              <div
                 key={post.id}
-                className={`bg-white rounded-xl overflow-hidden ${baseColor} shadow-md transform transition duration-500 hover:-translate-y-2 hover:shadow-xl ${hoverColor}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                className={`bg-white rounded-xl overflow-hidden ${baseColor} shadow-md ${hoverColor}`}
               >
                 <div className="overflow-hidden">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-auto sm:h-64 md:h-52 lg:h-56 object-contain sm:object-cover hover:scale-105 transition-transform duration-300"
+                    className="w-full h-auto sm:h-64 md:h-52 lg:h-56 object-contain sm:object-cover"
                   />
                 </div>
                 <div className="p-6">
@@ -68,12 +64,12 @@ const BlogSection = () => {
                   </div>
                   <h3 className="text-xl font-bold text-green-700 mb-2">{post.title}</h3>
                   <p className="text-sm text-gray-700 mb-4">{post.excerpt}</p>
-                  
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );

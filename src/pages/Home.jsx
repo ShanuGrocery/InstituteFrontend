@@ -29,19 +29,19 @@ const Home = () => {
       {/* <TrustedCompanies/> */}
       <InfoSection/>
       <PopularCourses/>
-      <Placements/>
       <Collab/>
+      <Placements/>
       <Practical/>
       <BlogSection/>
       <SafetyHighlights/>
-      <Testimonials/>
       <Highlights/><br />
       <Saftyfaq/>
       <Contact/> <br />
+      <Testimonials/>
       {/* <Sexa/> */}
       {/* <HeroCTA/> */}
       {/* <Ragistrationform/> <br /> */}
-      <BannerSectionOnly/> <br />
+      {/* <BannerSectionOnly/> <br /> */}
       {/* <Footer/> */}
     </div>
   )
