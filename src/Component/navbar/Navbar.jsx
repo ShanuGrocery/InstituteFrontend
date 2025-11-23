@@ -19,199 +19,170 @@ const Navbar = () => {
   const colorClasses = ["text-green-600"];
 
   return (
-    <>
-      <nav className="bg-purple-100 shadow-[0_4px_20px_rgba(0,0,0,0.05)] sticky top-0 z-50">
-        <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
-          {/* Logo */}
-          <Link to={"/"}>
-            <div className="flex items-center gap-3 flex-none">
-              <img
-                src={logo}
-                alt="CIHS Logo"
-                className="h-10 w-auto object-contain"
-              />
-              <div className="flex flex-col leading-tight">
-                <span className="text-xl font-bold uppercase">
-                  <span className="text-green-600">Cihs</span> <span>studies</span>
-                </span>
-                <span className="text-xs text-green-500 uppercase">
-                  Private Limited
-                </span>
-              </div>
+    <nav className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+      <div className="w-full flex items-center gap-6 py-4 px-4 md:px-8">
+        {/* Logo - forced left */}
+        <Link to="/" className="flex items-center gap-3 w-52">
+          <img
+            src={logo}
+            alt="CIHS Logo"
+            className="h-12 w-auto object-contain"
+          />
+          <div className="leading-tight hidden sm:block">
+            <span className="text-xl font-bold uppercase">
+              <span className="text-green-600">Cihs</span> Studies
+            </span>
+            <div className="text-xs text-green-500 uppercase tracking-wide">
+              Private Limited
             </div>
-          </Link>
+          </div>
+        </Link>
 
-          {/* Centered Menu (Desktop) */}
-          <div className="hidden md:flex flex-1 justify-center">
-            <ul className="flex items-center gap-8 text-black font-semibold uppercase">
+        {/* Desktop menu */}
+        <div className="hidden md:flex flex-1 justify-center">
+          <ul className="flex items-center gap-8 text-gray-700 font-medium uppercase tracking-wide">
+            {NavbarMenu.map((item, index) => {
+              const colorClass = colorClasses[index % colorClasses.length];
+              return (
+                <li key={item.id} className="relative group">
+                  <a
+                    href={item.link}
+                    className={`px-3 py-2 hover:text-green-600 transition-colors ${colorClass}`}
+                  >
+                    {item.title}
+                  </a>
+
+                  {item.submenu && (
+                    <ul className="absolute top-full left-0 mt-3 w-52 bg-white border border-gray-100 shadow-lg rounded-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
+                      {item.submenu.map((sub, i) => (
+                        <li key={i}>
+                          <a
+                            href={sub.link}
+                            className="block px-4 py-2 text-sm hover:bg-green-50 hover:text-green-600 rounded transition"
+                          >
+                            {sub.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        {/* Desktop CTA */}
+        <div className="hidden md:flex flex-none">
+          <Link
+            to="/login"
+            className="ml-4 bg-gradient-to-r from-green-500 to-teal-500 
+    text-white text-base px-7 py-3 
+    rounded-full font-bold shadow-md 
+    hover:shadow-lg hover:from-green-600 hover:to-teal-600 
+    transition-all duration-300"
+          >
+            Sign in
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden ml-auto">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-2xl text-green-600 hover:bg-green-100 rounded-full p-2"
+          >
+            {mobileMenuOpen ? <MdClose /> : <MdMenu />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            key="mobileMenu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white border-t border-gray-100 shadow-md px-4 pb-5 space-y-3"
+          >
+            <ul className="flex flex-col gap-2 text-gray-700 font-medium uppercase tracking-wide">
               {NavbarMenu.map((item, index) => {
                 const colorClass = colorClasses[index % colorClasses.length];
                 return (
-                  <li key={item.id} className="relative group">
-                    <a
-                      href={item.link}
-                      className={`duration-200 ${colorClass} hover:bg-green-100/50 hover:text-green-700 px-2 py-1 rounded-md`}
+                  <li key={item.id}>
+                    <div
+                      onClick={() =>
+                        item.submenu ? toggleSubmenu(item.id) : null
+                      }
+                      className={`flex justify-between items-center py-3 px-3 rounded cursor-pointer hover:bg-green-50 ${colorClass} hover:text-green-700`}
                     >
-                      {item.title}
-                    </a>
-                    {item.submenu && (
-                      <ul className="absolute top-full left-0 mt-2 w-48 bg-white border border-green-200 shadow-xl rounded-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
-                        {item.submenu.map((sub, subIndex) => (
-                          <li key={subIndex}>
+                      {item.link ? (
+                        <a href={item.link}>{item.title}</a>
+                      ) : (
+                        item.title
+                      )}
+
+                      {item.submenu && (
+                        <svg
+                          className={`w-4 h-4 transition-transform ${
+                            openSubmenus[item.id] ? "rotate-180" : "rotate-0"
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      )}
+                    </div>
+
+                    {/* Submenu items */}
+                    {item.submenu && openSubmenus[item.id] && (
+                      <motion.ul
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="pl-5 mt-2 space-y-1 text-sm"
+                      >
+                        {item.submenu.map((sub, i) => (
+                          <li key={i}>
                             <a
                               href={sub.link}
-                              className="block px-4 py-2 text-sm hover:bg-green-100/80 hover:text-green-700 rounded transition"
+                              className="block py-2 px-3 rounded hover:bg-green-50 text-gray-600"
                             >
                               {sub.title}
                             </a>
                           </li>
                         ))}
-                      </ul>
+                      </motion.ul>
                     )}
                   </li>
                 );
               })}
+
+              {/* Mobile CTA */}
+              <li>
+                <Link
+                  to="/login"
+                  className="block py-3 px-4 text-center mt-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full shadow-md hover:from-green-600 hover:to-teal-600 transition-all duration-300"
+                >
+                  Sign in
+                </Link>
+              </li>
             </ul>
-          </div>
-
-          {/* Login Button - Desktop */}
-          <div className="hidden md:flex flex-none">
-            <Link
-              to="/login"
-              className="ml-6 bg-gradient-to-r from-green-500 to-teal-500 text-white px-5 py-2 rounded-full uppercase font-semibold shadow-md hover:from-green-600 hover:to-teal-600 transition-all duration-300 flex items-center gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3-3H9m0 0l3-3m-3 3l3 3"
-                />
-              </svg>
-              Sign in
-            </Link>
-          </div>
-
-          {/* Hamburger - Mobile */}
-          <div className="md:hidden flex-none">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-2xl text-green-600 hover:bg-green-100 rounded-full p-2"
-            >
-              {mobileMenuOpen ? <MdClose /> : <MdMenu />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              key="mobileMenu"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden px-4 pb-4 space-y-4 bg-white shadow-md"
-            >
-              <ul className="flex flex-col gap-2 text-gray-700 font-semibold uppercase">
-                {NavbarMenu.map((item, index) => {
-                  const colorClass = colorClasses[index % colorClasses.length];
-                  return (
-                    <li key={item.id}>
-                      <div
-                        onClick={() =>
-                          item.submenu ? toggleSubmenu(item.id) : null
-                        }
-                        className={`flex justify-between items-center py-2 px-3 rounded cursor-pointer hover:bg-green-100/70 ${colorClass} hover:text-green-700`}
-                      >
-                        <span>
-                          {item.link ? (
-                            <a href={item.link}>{item.title}</a>
-                          ) : (
-                            item.title
-                          )}
-                        </span>
-                        {item.submenu && (
-                          <svg
-                            className={`w-4 h-4 transition-transform ${
-                              openSubmenus[item.id] ? "rotate-180" : "rotate-0"
-                            }`}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </svg>
-                        )}
-                      </div>
-
-                      {/* Submenu Items */}
-                      {item.submenu && openSubmenus[item.id] && (
-                        <motion.ul
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="pl-5 mt-1 space-y-1 text-sm"
-                        >
-                          {item.submenu.map((sub, subIndex) => (
-                            <li key={subIndex}>
-                              <a
-                                href={sub.link}
-                                className="block py-2 px-3 rounded hover:bg-green-100/70 text-gray-600"
-                              >
-                                {sub.title}
-                              </a>
-                            </li>
-                          ))}
-                        </motion.ul>
-                      )}
-                    </li>
-                  );
-                })}
-
-                {/* Login Button - Mobile */}
-                <li>
-                  <Link
-                    to="/login"
-                    className="block py-2 px-4 mt-2 text-center bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full shadow-md hover:from-green-600 hover:to-teal-600 transition-all duration-300 flex justify-center items-center gap-2"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-5 h-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3-3H9m0 0l3-3m-3 3l3 3"
-                      />
-                    </svg>
-                    Sign in
-                  </Link>
-                </li>
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 };
 
