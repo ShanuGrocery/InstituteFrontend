@@ -26,8 +26,7 @@ const Contact = () => {
             <FaEnvelope className="text-green-600 text-xl mt-1" />
             <div>
               <h4 className="font-semibold text-lg text-green-700 mb-1">Email</h4>
-              <p className="text-gray-600">cihs.institute@gmail.com</p>
-              <p className="text-gray-600">support@cihs.org.in</p>
+              <p className="text-gray-600">Info@cihsstudies.com</p>
             </div>
           </div>
 
