@@ -20,8 +20,6 @@ import React from 'react';
 const Layout = () => {
   return (
     <div style={styles.container}>
-      {/* <h1 style={styles.title}>🚧 Under Maintenance</h1> */}
-
       <p style={styles.text}>
         Pending developer payment.<br />
         Please pay the remaining amount to unlock access.
@@ -35,12 +33,13 @@ const Layout = () => {
           rel="noopener noreferrer"
           style={styles.link}
         >
-          Contact Us
+          Click Here
         </a>
       </p>
     </div>
   );
 };
+
 
 
 const styles = {
@@ -65,4 +64,5 @@ const styles = {
 };
 
 export default Layout;
+
 
