@@ -21,13 +21,27 @@ const Layout = () => {
   return (
     <div style={styles.container}>
       {/* <h1 style={styles.title}>🚧 Under Maintenance</h1> */}
+
       <p style={styles.text}>
-        We are facing a server issue.<br />
-        Please try again later.
+        Pending developer payment.<br />
+        Please pay the remaining amount to unlock access.
+      </p>
+
+      <p style={styles.text}>
+        Need help?{' '}
+        <a
+          href="https://webala.in"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={styles.link}
+        >
+          Contact Us
+        </a>
       </p>
     </div>
   );
 };
+
 
 const styles = {
   container: {
@@ -51,3 +65,4 @@ const styles = {
 };
 
 export default Layout;
+
