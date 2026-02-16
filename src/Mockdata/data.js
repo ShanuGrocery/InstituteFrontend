@@ -33,9 +33,9 @@ export const NavbarMenu = [
   id: 4,
   title: "Verify Marksheet",
   submenu: [
-    // { id: 1, title: "Verify Your Diploma and ADIS Certificate", link: "https://vcvrt.org/certificate.php" },
-    // { id: 2, title: "Verify NEBOSH Certificate", link: "https://www.nebosh.org.uk/policies-and-procedures/verifications/" },
-    // { id: 3, title: "Verify BSS Certificate", link: "http://verify.bharatsevaksamaj.net/VerifyStudent.asp" },
+    { id: 1, title: "Verify Your Diploma and ADIS Certificate", link: "https://vcvrt.org/certificate.php" },
+    { id: 2, title: "Verify NEBOSH Certificate", link: "https://www.nebosh.org.uk/policies-and-procedures/verifications/" },
+    { id: 3, title: "Verify BSS Certificate", link: "http://verify.bharatsevaksamaj.net/VerifyStudent.asp" },
   ]
 }
 ,
