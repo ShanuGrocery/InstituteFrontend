@@ -1,19 +1,19 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Navbar from './Component/navbar/Navbar'
-import Footer from './Component/footer/Footer'
+// import React from 'react'
+// import { Outlet } from 'react-router-dom'
+// import Navbar from './Component/navbar/Navbar'
+// import Footer from './Component/footer/Footer'
 
-const Layout = () => {
-  return (
-    <div className='overflow-x-hidden'>
-      <Navbar />
-      <Outlet />  {/* Pages go here */}
-      <Footer />
-    </div>
-  )
-}
+// const Layout = () => {
+//   return (
+//     <div className='overflow-x-hidden'>
+//       <Navbar />
+//       <Outlet />  {/* Pages go here */}
+//       <Footer />
+//     </div>
+//   )
+// }
 
-export default Layout
+// export default Layout
 
 // import React from 'react';
 
@@ -65,5 +65,46 @@ export default Layout
 
 // export default Layout;
 
+import React from 'react';
 
+const Layout = () => {
+  return (
+    <div style={styles.container}>
+      <p style={styles.text}>
+        Server is currently down due to financial conditions.<br />
+        Please try again later.
+      </p>
+
+      <p style={styles.text}>
+        Need help?{' '}
+        <a href="tel:6200594193" style={styles.link}>
+          6200594193
+        </a>
+      </p>
+    </div>
+  );
+};
+
+const styles = {
+  container: {
+    height: '100vh',
+    backgroundColor: '#121212',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  text: {
+    color: '#ff7b7b',
+    fontSize: '1.2rem',
+  },
+  link: {
+    color: '#ff2e2e',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+  },
+};
+
+export default Layout;
 
